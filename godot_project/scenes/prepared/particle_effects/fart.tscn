@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://4wh1i61wwd8u"]
+
+[ext_resource type="Texture2D" uid="uid://cnelt4kr52f7c" path="res://assets/particles/smoke_04.png" id="1_7dk4t"]
+
+[sub_resource type="Curve" id="Curve_teovp"]
+_data = [Vector2(0.0363985, 0.951602), 0.0, 0.0, 0, 0, Vector2(0.975096, 0.0825509), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mtwdi"]
+curve = SubResource("Curve_teovp")
+
+[sub_resource type="Curve" id="Curve_8aac5"]
+_data = [Vector2(0, 0.117242), 0.0, 0.0, 0, 0, Vector2(0.557781, 0.449753), 0.883411, 0.883411, 0, 0, Vector2(1, 1), 2.73858, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_8tp5s"]
+curve = SubResource("Curve_8aac5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iopdr"]
+particle_flag_disable_z = true
+angle_min = -370.0
+angle_max = 240.0
+velocity_pivot = Vector3(10, 10, 0)
+gravity = Vector3(0, -20, 0)
+radial_accel_max = 28.08
+scale_min = 0.1
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_8tp5s")
+color = Color(0.298039, 0.831373, 0, 1)
+alpha_curve = SubResource("CurveTexture_mtwdi")
+
+[node name="fart" type="GPUParticles2D"]
+position = Vector2(-1, 40)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_iopdr")
+texture = ExtResource("1_7dk4t")
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.64
