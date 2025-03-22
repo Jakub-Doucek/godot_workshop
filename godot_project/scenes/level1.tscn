@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/level_workshop.gd" id="1_gwxuf"]
 [ext_resource type="PackedScene" uid="uid://lhibb7kfqu3b" path="res://scenes/prepared/main_character.tscn" id="1_gytht"]
-[ext_resource type="PackedScene" uid="uid://bkoh0q5iyqfry" path="res://scenes/level2.tscn" id="2_s0ahk"]
+[ext_resource type="PackedScene" uid="uid://bkoh0q5iyqfry" path="res://scenes/level2.tscn" id="2_w3r0c"]
 [ext_resource type="PackedScene" uid="uid://bf4cs2vgw0djj" path="res://scenes/prepared/moving_platform.tscn" id="4_f5vjj"]
 [ext_resource type="TileSet" uid="uid://e7ikenrxfcj0" path="res://tilesets/tile_set_basic.tres" id="4_rugyr"]
 [ext_resource type="PackedScene" uid="uid://6221suus1nxv" path="res://scenes/enemy/enemy.tscn" id="6_6511p"]
@@ -12,7 +12,7 @@ radius = 84.0238
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_gwxuf")
-next_level = ExtResource("2_s0ahk")
+next_level = ExtResource("2_w3r0c")
 
 [node name="LayerBackground" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -94,7 +94,7 @@ position = Vector2(3935, -308)
 shape = SubResource("CircleShape2D_673px")
 
 [node name="MovingPlatform" parent="." node_paths=PackedStringArray("start_point", "move_to_point") instance=ExtResource("4_f5vjj")]
-position = Vector2(3381.72, -188)
+position = Vector2(3442.98, -188)
 start_point = NodePath("Node2D2")
 start_position = Vector2(2977, -188)
 end_position = Vector2(3451, -188)

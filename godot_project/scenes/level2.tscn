@@ -1,7 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://bkoh0q5iyqfry"]
 
 [ext_resource type="Script" path="res://scenes/level_workshop.gd" id="1_bjpwn"]
-[ext_resource type="PackedScene" uid="uid://4gvpu2sicyo2" path="res://scenes/level1.tscn" id="2_bws0p"]
 [ext_resource type="TileSet" uid="uid://e7ikenrxfcj0" path="res://tilesets/tile_set_basic.tres" id="2_o6dqq"]
 [ext_resource type="PackedScene" uid="uid://lhibb7kfqu3b" path="res://scenes/prepared/main_character.tscn" id="3_fbi0s"]
 [ext_resource type="PackedScene" uid="uid://bf4cs2vgw0djj" path="res://scenes/prepared/moving_platform.tscn" id="4_wyxe5"]
@@ -11,7 +10,6 @@ radius = 84.0238
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_bjpwn")
-next_level = ExtResource("2_bws0p")
 
 [node name="LayerBackground" type="TileMapLayer" parent="."]
 use_parent_material = true
