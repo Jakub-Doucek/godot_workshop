@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=4 uid="uid://bkoh0q5iyqfry"]
+
+[ext_resource type="Script" path="res://scenes/level_workshop.gd" id="1_bjpwn"]
+[ext_resource type="PackedScene" uid="uid://4gvpu2sicyo2" path="res://scenes/level1.tscn" id="2_bws0p"]
+[ext_resource type="TileSet" uid="uid://e7ikenrxfcj0" path="res://tilesets/tile_set_basic.tres" id="2_o6dqq"]
+[ext_resource type="PackedScene" uid="uid://lhibb7kfqu3b" path="res://scenes/prepared/main_character.tscn" id="3_fbi0s"]
+[ext_resource type="PackedScene" uid="uid://bf4cs2vgw0djj" path="res://scenes/prepared/moving_platform.tscn" id="4_wyxe5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_673px"]
+radius = 84.0238
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_bjpwn")
+next_level = ExtResource("2_bws0p")
+
+[node name="LayerBackground" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(899, -434)
+tile_map_data = PackedByteArray("AAAKAAIAAAAHAAQAAAAKAAMAAAAHAAQAAAAKAAQAAAAHAAQAAAALAAIAAAAHAAQAAAALAAMAAAAHAAQAAAALAAQAAAAHAAQAAAAMAAIAAAAHAAQAAAAMAAMAAAAHAAQAAAAMAAQAAAAHAAQAAAANAAIAAAAHAAQAAAANAAMAAAAHAAQAAAANAAQAAAAHAAQAAAAOAAIAAAAHAAQAAAAOAAMAAAAHAAQAAAAOAAQAAAAHAAQAAAA=")
+tile_set = ExtResource("2_o6dqq")
+collision_enabled = false
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(899, -434)
+tile_map_data = PackedByteArray("AAAGAAUAAAAHAAgAAAAGAAYAAAAIAAwAAAAHAAUAAAAHAAgAAAAHAAYAAAAIAAwAAAAIAAUAAAAHAAgAAAAIAAYAAAAHAAoAAAAJAAUAAAAHAAgAAAAJAAYAAAAIAAwAAAAKAAMAAAABAAMAAAAKAAUAAAAHAAgAAAAKAAYAAAAIAAwAAAALAAUAAAAHAAgAAAALAAYAAAAIAAwAAAAMAAUAAAAHAAgAAAAMAAYAAAAIAAwAAAANAAUAAAAHAAgAAAANAAYAAAAIAAwAAAAOAAUAAAAHAAgAAAAOAAYAAAAIAAwAAAAMAAQAAAAHAAEAAAAMAAMAAAAHAAEAAAAMAAIAAAAHAAEAAAAMAAEAAAAHAAEAAAAMAAAAAAAHAAEAAAAMAP//AAAHAAIAAAAGAAcAAAAIAAwAAAAGAAgAAAAIAAwAAAAGAAkAAAAIAAwAAAAHAAcAAAAIAAwAAAAHAAgAAAAIAAwAAAAHAAkAAAAIAAwAAAAIAAcAAAAIAAwAAAAIAAgAAAAIAAwAAAAIAAkAAAAIAAwAAAAJAAcAAAAIAAwAAAAJAAgAAAAIAAwAAAAJAAkAAAAIAAwAAAAKAAcAAAAIAAwAAAAKAAgAAAAHAAoAAAAKAAkAAAAIAAwAAAALAAcAAAAIAAwAAAALAAgAAAAHAAoAAAALAAkAAAAIAAwAAAAMAAcAAAAIAAwAAAAMAAgAAAAIAAwAAAAMAAkAAAAIAAwAAAANAAcAAAAIAAwAAAANAAgAAAAIAAwAAAANAAkAAAAIAAwAAAAOAAcAAAADAAAAAAAOAAgAAAAIAAwAAAAOAAkAAAAIAAwAAAAMAP7/AAAHAAEAAAAGAP7/AAAIAAkAAAAHAP7/AAAHAAgAAAAIAP7/AAAHAAgAAAAJAP7/AAAHAAgAAAAKAP7/AAAHAAgAAAALAP7/AAAHAAgAAAANAP7/AAAHAAgAAAAOAP7/AAAHAAgAAAAOAAMAAAABAAIAAAA=")
+tile_set = ExtResource("2_o6dqq")
+
+[node name="MainCharacter" parent="." groups=["player"] instance=ExtResource("3_fbi0s")]
+position = Vector2(1412, -144)
+
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WinContainer" type="CenterContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinContainer"]
+layout_mode = 2
+
+[node name="WinLabel" type="Label" parent="CanvasLayer/WinContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.909804, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_font_sizes/font_size = 70
+text = "Úroveň splněna!"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/WinContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Pokračuj!"
+
+[node name="WinConditionArea" type="Area2D" parent="."]
+position = Vector2(3935, -308)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinConditionArea"]
+shape = SubResource("CircleShape2D_673px")
+
+[node name="MovingPlatform" parent="." node_paths=PackedStringArray("start_point", "move_to_point") instance=ExtResource("4_wyxe5")]
+position = Vector2(2984.2, -188)
+start_point = NodePath("Node2D2")
+start_position = Vector2(2977, -188)
+end_position = Vector2(3451, -188)
+move_to_point = NodePath("Node2D")
+
+[node name="Node2D" type="Node2D" parent="MovingPlatform"]
+position = Vector2(478, 0)
+
+[node name="Node2D2" type="Node2D" parent="MovingPlatform"]
+position = Vector2(4, 0)
+
+[connection signal="body_entered" from="WinConditionArea" to="." method="_on_win_condition_area_body_entered"]

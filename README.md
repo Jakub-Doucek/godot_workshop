@@ -4,9 +4,9 @@
 
 ## Prerequisites
 
- 1. Download Godot version 4.2.2 (**basic version without .NET C#**): 
-- Windows - https://github.com/godotengine/godot/releases/download/4.2.2-stable/Godot_v4.2.2-stable_win64.exe.zip
-- MacOs - https://github.com/godotengine/godot/releases/download/4.2.2-stable/Godot_v4.2.2-stable_macos.universal.zip
+ 1. Download Godot version 4.2.2 (basic version without C#). 
+https://godotengine.org/download/archive/4.3-stable
+
 2. Download or clone this Repo.
 ![enter image description here](download_info.png)
 

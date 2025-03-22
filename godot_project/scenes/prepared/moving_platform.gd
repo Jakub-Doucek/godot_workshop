@@ -3,12 +3,16 @@ extends AnimatableBody2D
 
 var tween : Tween
 
-var start_position : Vector2
+@export var start_point : Node2D :
+	set(value):
+		start_point = value
+		
+@export var start_position : Vector2
+@export var end_position : Vector2
 
 @export var move_to_point : Node2D :
 	set(value):
 		move_to_point = value
-		create_animation()
 		
 @export var stop_animation_ed := false:
 	set(value):
@@ -16,6 +20,14 @@ var start_position : Vector2
 		
 @export var start_animation_ed := false:
 	set(value):
+		if not start_point:
+			start_position = global_position
+		else:
+			start_position = start_point.global_position
+			
+		if move_to_point:
+			end_position = move_to_point.global_position
+		
 		create_animation()
 
 # Called when the node enters the scene tree for the first time.
@@ -31,12 +43,10 @@ func stop_animation():
 
 func create_animation():
 	if is_node_ready():
-		start_position = global_position
 		stop_animation()
 	
 		if move_to_point:
 			tween = get_tree().create_tween()
-			var end_position :=  move_to_point.global_position
 			tween.tween_property(self, "global_position", end_position, 2)
 			tween.tween_property(self, "global_position", start_position, 2)
 			tween.set_loops()	

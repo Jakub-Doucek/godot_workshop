@@ -1,0 +1,116 @@
+[gd_scene load_steps=8 format=4 uid="uid://4gvpu2sicyo2"]
+
+[ext_resource type="Script" path="res://scenes/level_workshop.gd" id="1_gwxuf"]
+[ext_resource type="PackedScene" uid="uid://lhibb7kfqu3b" path="res://scenes/prepared/main_character.tscn" id="1_gytht"]
+[ext_resource type="PackedScene" uid="uid://bkoh0q5iyqfry" path="res://scenes/level2.tscn" id="2_s0ahk"]
+[ext_resource type="PackedScene" uid="uid://bf4cs2vgw0djj" path="res://scenes/prepared/moving_platform.tscn" id="4_f5vjj"]
+[ext_resource type="TileSet" uid="uid://e7ikenrxfcj0" path="res://tilesets/tile_set_basic.tres" id="4_rugyr"]
+[ext_resource type="PackedScene" uid="uid://6221suus1nxv" path="res://scenes/enemy/enemy.tscn" id="6_6511p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_673px"]
+radius = 84.0238
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_gwxuf")
+next_level = ExtResource("2_s0ahk")
+
+[node name="LayerBackground" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(899, -434)
+tile_map_data = PackedByteArray("AAAKAAIAAAAHAAQAAAAKAAMAAAAHAAQAAAAKAAQAAAAHAAQAAAALAAIAAAAHAAQAAAALAAMAAAAHAAQAAAALAAQAAAAHAAQAAAAMAAIAAAAHAAQAAAAMAAMAAAAHAAQAAAAMAAQAAAAHAAQAAAANAAIAAAAHAAQAAAANAAMAAAAHAAQAAAANAAQAAAAHAAQAAAAOAAIAAAAHAAQAAAAOAAMAAAAHAAQAAAAOAAQAAAAHAAQAAAA=")
+tile_set = ExtResource("4_rugyr")
+collision_enabled = false
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(899, -434)
+tile_map_data = PackedByteArray("AAASAAUAAAAHAAgAAAASAAYAAAAIAAwAAAAGAAUAAAAHAAgAAAAGAAYAAAAIAAwAAAAHAAUAAAAHAAgAAAAHAAYAAAAIAAwAAAAIAAUAAAAHAAgAAAAIAAYAAAAHAAoAAAAJAAUAAAAHAAgAAAAJAAYAAAAIAAwAAAAKAAMAAAABAAMAAAAKAAUAAAAHAAgAAAAKAAYAAAAIAAwAAAALAAUAAAAHAAgAAAALAAYAAAAIAAwAAAAMAAUAAAAHAAgAAAAMAAYAAAAIAAwAAAANAAUAAAAHAAgAAAANAAYAAAAIAAwAAAAOAAUAAAAHAAgAAAAOAAYAAAAIAAwAAAAPAAUAAAAHAAgAAAAPAAYAAAAIAAwAAAAQAAUAAAAHAAgAAAAQAAYAAAAIAAwAAAARAAUAAAAHAAgAAAARAAYAAAADAAAAAAAMAAQAAAAHAAEAAAAMAAMAAAAHAAEAAAAMAAIAAAAHAAEAAAAMAAEAAAAHAAEAAAAMAAAAAAAHAAEAAAAMAP//AAAHAAIAAAATAAUAAAAHAAcAAAAUAAUAAAAHAAcAAAAVAAQAAAAIAAIAAAAVAAUAAAAIAAEAAAAWAAMAAAAIAAIAAAAXAAMAAAAHAAcAAAAYAAMAAAAHAAcAAAAZAAMAAAAHAAcAAAAaAAMAAAAHAAcAAAAbAAMAAAAHAAcAAAAWAAQAAAAIAAEAAAAcAAMAAAAHAAcAAAAGAAcAAAAIAAwAAAAGAAgAAAAIAAwAAAAGAAkAAAAIAAwAAAAHAAcAAAAIAAwAAAAHAAgAAAAIAAwAAAAHAAkAAAAIAAwAAAAIAAcAAAAIAAwAAAAIAAgAAAAIAAwAAAAIAAkAAAAIAAwAAAAJAAcAAAAIAAwAAAAJAAgAAAAIAAwAAAAJAAkAAAAIAAwAAAAKAAcAAAAIAAwAAAAKAAgAAAAHAAoAAAAKAAkAAAAIAAwAAAALAAcAAAAIAAwAAAALAAgAAAAHAAoAAAALAAkAAAAIAAwAAAAMAAcAAAAIAAwAAAAMAAgAAAAIAAwAAAAMAAkAAAAIAAwAAAANAAcAAAAIAAwAAAANAAgAAAAIAAwAAAANAAkAAAAIAAwAAAAOAAcAAAADAAAAAAAOAAgAAAAIAAwAAAAOAAkAAAAIAAwAAAAPAAcAAAAIAAwAAAAPAAgAAAAIAAwAAAAPAAkAAAAIAAwAAAAQAAcAAAAIAAwAAAAQAAgAAAAIAAwAAAAQAAkAAAAIAAwAAAARAAcAAAAIAAwAAAARAAgAAAAIAAwAAAARAAkAAAAIAAwAAAASAAcAAAAIAAwAAAASAAgAAAADAAAAAAASAAkAAAAIAAwAAAATAAYAAAAIAAwAAAATAAcAAAAIAAwAAAATAAgAAAAIAAwAAAATAAkAAAAIAAwAAAAUAAYAAAAIAAwAAAAUAAcAAAAIAAwAAAAUAAgAAAAIAAwAAAAUAAkAAAAIAAwAAAAVAAYAAAAIAAwAAAAVAAcAAAAHAAoAAAAVAAgAAAAIAAwAAAAVAAkAAAAIAAwAAAAWAAYAAAAIAAwAAAAWAAcAAAAIAAwAAAAWAAgAAAAIAAwAAAAWAAkAAAAIAAwAAAAXAAYAAAAIAAwAAAAXAAcAAAAIAAwAAAAXAAgAAAAIAAwAAAAXAAkAAAAIAAwAAAAYAAYAAAAIAAwAAAAYAAcAAAADAAAAAAAYAAgAAAAIAAwAAAAYAAkAAAAIAAwAAAAZAAYAAAAIAAwAAAAZAAcAAAAIAAwAAAAZAAgAAAAIAAwAAAAZAAkAAAAIAAwAAAAaAAYAAAAIAAwAAAAaAAcAAAAIAAwAAAAaAAgAAAAIAAwAAAAaAAkAAAAIAAwAAAAbAAYAAAAIAAwAAAAbAAcAAAAIAAwAAAAbAAgAAAAHAAoAAAAbAAkAAAAIAAwAAAAcAAYAAAAIAAwAAAAcAAcAAAAIAAwAAAAcAAgAAAAIAAwAAAAcAAkAAAAIAAwAAAAXAAQAAAAIAAwAAAAXAAUAAAAIAAwAAAAYAAQAAAAIAAwAAAAYAAUAAAAIAAwAAAAZAAQAAAAIAAwAAAAZAAUAAAAIAAwAAAAaAAQAAAAHAAoAAAAaAAUAAAAIAAwAAAAbAAQAAAAHAAoAAAAbAAUAAAAIAAwAAAAcAAQAAAAIAAwAAAAcAAUAAAAIAAwAAAAWAAUAAAAIAAwAAAAlAAMAAAAHAAcAAAAmAAMAAAAHAAcAAAAnAAMAAAAHAAcAAAAoAAMAAAAHAAcAAAApAAMAAAAHAAcAAAAqAAMAAAAHAAcAAAArAAMAAAAHAAcAAAAsAAMAAAAHAAcAAAArAAIAAAAEAAUAAAAlAAQAAAAIAAwAAAAlAAUAAAAIAAwAAAAlAAYAAAAIAAwAAAAlAAcAAAAIAAwAAAAlAAgAAAAIAAwAAAAlAAkAAAAIAAwAAAAmAAQAAAAIAAwAAAAmAAUAAAABAAQAAAAmAAYAAAAIAAwAAAAmAAcAAAAIAAwAAAAmAAgAAAAIAAwAAAAmAAkAAAAIAAwAAAAnAAQAAAAIAAwAAAAnAAUAAAAIAAwAAAAnAAYAAAAIAAwAAAAnAAcAAAAIAAwAAAAnAAgAAAAIAAwAAAAnAAkAAAAIAAwAAAAoAAQAAAAIAAwAAAAoAAUAAAAIAAwAAAAoAAYAAAAIAAwAAAAoAAcAAAAIAAwAAAAoAAgAAAAIAAwAAAAoAAkAAAAIAAwAAAApAAQAAAAIAAwAAAApAAUAAAADAAAAAAApAAYAAAAIAAwAAAApAAcAAAAIAAwAAAApAAgAAAAIAAwAAAApAAkAAAAIAAwAAAAqAAQAAAAIAAwAAAAqAAUAAAAIAAwAAAAqAAYAAAAIAAwAAAAqAAcAAAAIAAwAAAAqAAgAAAABAAQAAAAqAAkAAAAIAAwAAAArAAQAAAAIAAwAAAArAAUAAAAIAAwAAAArAAYAAAAIAAwAAAArAAcAAAAIAAwAAAArAAgAAAAIAAwAAAArAAkAAAAIAAwAAAAsAAQAAAAIAAwAAAAsAAUAAAAIAAwAAAAsAAYAAAAIAAwAAAAsAAcAAAAIAAwAAAAsAAgAAAAIAAwAAAAsAAkAAAAIAAwAAAAMAP7/AAAHAAEAAAAGAP7/AAAIAAkAAAAHAP7/AAAHAAgAAAAIAP7/AAAHAAgAAAAJAP7/AAAHAAgAAAAKAP7/AAAHAAgAAAALAP7/AAAHAAgAAAANAP7/AAAHAAgAAAAOAP7/AAAHAAgAAAAPAP7/AAAHAAgAAAAQAP7/AAAHAAgAAAARAP7/AAAHAAgAAAASAP7/AAAHAAgAAAATAP7/AAAHAAgAAAAUAP7/AAAHAAgAAAAVAP7/AAAHAAgAAAAWAP7/AAAHAAgAAAAXAP7/AAAHAAgAAAAYAP7/AAAIAAgAAAAbAP7/AAAIAAoAAAAcAP7/AAAHAAgAAAAdAP7/AAAHAAgAAAAeAP7/AAAHAAgAAAAfAP7/AAAHAAgAAAAgAP7/AAAHAAgAAAAhAP7/AAAHAAgAAAAiAP7/AAAIAAcAAAAZAAEAAAAIAAUAAAAaAAEAAAAIAAMAAAAOAAMAAAABAAIAAAA=")
+tile_set = ExtResource("4_rugyr")
+
+[node name="MainCharacter" parent="." groups=["player"] instance=ExtResource("1_gytht")]
+unique_name_in_owner = true
+position = Vector2(1412, -144)
+
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WinContainer" type="CenterContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/WinContainer"]
+layout_mode = 2
+
+[node name="WinLabel" type="Label" parent="CanvasLayer/WinContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.909804, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 40
+theme_override_font_sizes/font_size = 70
+text = "Úroveň splněna!"
+
+[node name="ContinueButton" type="Button" parent="CanvasLayer/WinContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Pokračuj!"
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 40.0
+offset_right = 145.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 30
+text = "Životy: "
+
+[node name="HealthLbl" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 154.0
+offset_top = 40.0
+offset_right = 258.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 30
+text = "5"
+
+[node name="WinConditionArea" type="Area2D" parent="."]
+position = Vector2(3935, -308)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinConditionArea"]
+shape = SubResource("CircleShape2D_673px")
+
+[node name="MovingPlatform" parent="." node_paths=PackedStringArray("start_point", "move_to_point") instance=ExtResource("4_f5vjj")]
+position = Vector2(3381.72, -188)
+start_point = NodePath("Node2D2")
+start_position = Vector2(2977, -188)
+end_position = Vector2(3451, -188)
+move_to_point = NodePath("Node2D")
+
+[node name="Node2D" type="Node2D" parent="MovingPlatform"]
+position = Vector2(478, 0)
+
+[node name="Node2D2" type="Node2D" parent="MovingPlatform"]
+position = Vector2(4, 0)
+
+[node name="Enemy" parent="." instance=ExtResource("6_6511p")]
+collision_layer = 2
+
+[node name="Enemy2" parent="." instance=ExtResource("6_6511p")]
+position = Vector2(2425, -637)
+collision_layer = 2
+
+[connection signal="body_entered" from="WinConditionArea" to="." method="_on_win_condition_area_body_entered"]

@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://6221suus1nxv"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_v0bd3"]
+[ext_resource type="Texture2D" uid="uid://ch7ktjelwbu6t" path="res://assets/enemies/slimeGreen_dead.png" id="2_7hbvl"]
+[ext_resource type="Texture2D" uid="uid://wjqijs8lu07b" path="res://assets/enemies/slimeGreen.png" id="2_wi3ll"]
+[ext_resource type="Texture2D" uid="uid://byhfjcu2c3jyv" path="res://assets/enemies/slimeGreen_move.png" id="3_vq6eb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5jaw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7hbvl")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wi3ll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vq6eb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evhy6"]
+size = Vector2(98, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwttn"]
+size = Vector2(77, 20)
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(2031, -637)
+script = ExtResource("1_v0bd3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m5jaw")
+animation = &"death"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 37)
+shape = SubResource("RectangleShape2D_evhy6")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-59, 42)
+collide_with_areas = true
+
+[node name="HitArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
+position = Vector2(-1, 12)
+shape = SubResource("RectangleShape2D_qwttn")
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]

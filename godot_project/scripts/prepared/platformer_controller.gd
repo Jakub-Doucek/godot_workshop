@@ -11,9 +11,15 @@ signal hit_ground()
 @export var input_left : String = "move_left"
 ## Name of input action to move right.
 @export var input_right : String = "move_right"
+
+@export var input_up : String = "move_up"
+
+@export var input_down : String = "move_down"
 ## Name of input action to jump.
 @export var input_jump : String = "jump"
 
+
+var apply_gravity : bool = true
 
 const DEFAULT_MAX_JUMP_HEIGHT = 150
 const DEFAULT_MIN_JUMP_HEIGHT = 60
@@ -171,9 +177,18 @@ func _physics_process(delta):
 		if can_ground_jump() and can_hold_jump:
 			jump()
 	
-	var gravity = apply_gravity_multipliers_to(default_gravity)
-	acc.y = gravity
+	if apply_gravity:
+		var gravity = apply_gravity_multipliers_to(default_gravity)
+		acc.y = gravity
+	else:
+		if Input.is_action_pressed(input_up):
+			acc.y = -max_acceleration
+		elif Input.is_action_pressed(input_down):
+			acc.y = max_acceleration
+		else:
+			velocity.y *= 1 / (1 + (delta * friction))
 	
+	print("acc.y: ", acc.y)
 	# Apply friction
 	velocity.x *= 1 / (1 + (delta * friction))
 	velocity += acc * delta
@@ -319,4 +334,3 @@ func calculate_friction(time_to_max):
 ## Formula from [url]https://www.reddit.com/r/gamedev/comments/bdbery/comment/ekxw9g4/?utm_source=share&utm_medium=web2x&context=3[/url]
 func calculate_speed(p_max_speed, p_friction):
 	return (p_max_speed / p_friction) - p_max_speed
-
